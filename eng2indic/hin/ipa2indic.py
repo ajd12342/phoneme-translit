@@ -41,21 +41,21 @@ def ipa2indic(tokenized_ipa):
             elif ipa=='<space>':
                 indic[i] = mapping[ipa][0]
             else:
-                raise Exception(f"Unknown IPA {ipa}")
+                raise Exception(f"Unknown IPA in vowel+consonants {ipa}")
         else:
             raise Exception(f"Unknown IPA {ipa}")
-
+    
     # Add halantyas
     for i, symb in enumerate(indic):
         if is_consonant[i]:
-            if not word_final_positions[i] and is_consonant[i+1]:
+            if not i in word_final_positions and is_consonant[i+1]:
                 # Consonant followed by consonant, so halantya
                 indic[i] = symb+' ्'
     
     # Convert vowels
     for i, symb in enumerate(indic):
         if not is_consonant[i] and tokenized_ipa[i]!='<space>':
-            if word_initial_positions[i] or not is_consonant[i-1]:
+            if i in word_initial_positions or not is_consonant[i-1]:
                 # Preceded by nothing, or by a vowel
                 indic[i] = mapping[symb][0]
             else:
