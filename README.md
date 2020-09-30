@@ -1,4 +1,4 @@
-# Setting up
+# eng2indic
 
 ## Create project directory
 
@@ -40,7 +40,7 @@ tar xf g2p-seq2seq-cmudict.tar.gz
 cd ..
 ```
 
-# Run on the text dataset
+## Run on the text dataset
 
 Let the text file path be `[input-text]` and the model path to the previously downloaded model be
 `[model]`. Let the Indian language be [lang].
@@ -50,5 +50,13 @@ Then, run:
 WD: eng2hin
 
 ```bash
-./eng2arpa.sh [model] [input-text] [lang] # Will be output to [input-text].arpa
+./eng2indic.sh [model] [input-text] [lang] # Will be output to [input-text].hin.txt (change to whatever Shreya needs)
+```
+
+# eng2indic2
+
+The setup is reduced to one line:
+
+```
+pip install g2p_en
 ```

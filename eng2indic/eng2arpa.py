@@ -10,6 +10,8 @@ if __name__ == "__main__":
         arpafile =  [_.strip().split() for _ in f.readlines()]
 
     mapping = dict([(_[0], ' '.join(_[1:])) for _ in arpafile])
+    # Manual edit for common words
+    mapping['us'] = 'AH S'
 
     for line in sys.stdin:
         utt_id = line.split()[0]
