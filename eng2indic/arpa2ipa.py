@@ -14,5 +14,5 @@ if __name__ == "__main__":
         utt_id = line.split()[0]
         line_arpa = line.split()[1:]
         ipa = module.arpa2ipa(line_arpa)
-        outp = utt_id + ' ' + ipa
+        outp = utt_id + ' ' + ' '.join(ipa)
         print(outp)

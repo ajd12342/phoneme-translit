@@ -10,9 +10,14 @@ set -o pipefail
 # Argument $2 - [input]
 # Argument $3 - [lang]
 
-./eng2arpa.sh $1 $2
+tmpdir=$2/../.eng2$3
+mkdir -p $tmpdir
+
+./eng2arpa.sh $1 $2 $tmpdir
 echo "Eng to ARPABET done"
-./arpa2ipa.sh $2 $3
+./arpa2ipa.sh $2 $3 $tmpdir
 echo "ARPABET to IPA done"
-./ipa2indic.sh $2 $3
+./ipa2indic.sh $2 $3 $tmpdir
+# Rename to filename desired by Shreya
+
 echo "Done."

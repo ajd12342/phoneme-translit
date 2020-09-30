@@ -8,9 +8,9 @@ set -o pipefail
 
 # Argument $1 - [model]
 # Argument $2 - [input]
+# Argument $3 - [tmpdir]
 
-tmpdir=.engtmp
-mkdir -p $tmpdir
+tmpdir=$3
 
 inpfilename=$(basename $2)
 
@@ -24,15 +24,5 @@ python3 genwordlist.py < $tmpdir/$inpfilename.lowerc > $tmpdir/$inpfilename.word
 g2p-seq2seq --decode $tmpdir/$inpfilename.wordlist --model_dir $1 --output $tmpdir/$inpfilename.arpalist
 
 # Use the generate mapping to produce ARPABET version of $2. <space> token is used as whitespace 
-python3 eng2arpa.py --arpa $tmpdir/$inpfilename.arpalist < $tmpdir/$inpfilename.lowerc > $2.arpa
+python3 eng2arpa.py --arpa $tmpdir/$inpfilename.arpalist < $tmpdir/$inpfilename.lowerc > $tmpdir/$inpfilename.arpa
 
-./arpa2ipa.sh $2 $3
-# while IFS= read -r line; do
-#     read -a linearray <<< $line
-#     uttid=${linearray[0]}
-#     words=("${linearray[@]:1}")
-#     # echo "${words[@]}" | tr ' ' '\n'
-#     transcript=$(g2p-seq2seq --decode <(echo "${words[@]}" | tr ' ' '\n') --model_dir $1 )
-#     # echo $transcript
-#     # sleep 1
-# done < $2

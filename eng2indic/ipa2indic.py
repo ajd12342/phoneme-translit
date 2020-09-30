@@ -12,6 +12,6 @@ if __name__ == "__main__":
     for line in sys.stdin:
         utt_id = line.split()[0]
         line_ipa = line.split()[1:]
-        txt = module.arpa2ipa(line_ipa)
-        outp = utt_id + ' ' + txt
+        txt = module.ipa2indic(line_ipa)
+        outp = utt_id + ' ' + ''.join(txt)
         print(outp)

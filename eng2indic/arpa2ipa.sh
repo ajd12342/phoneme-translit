@@ -8,6 +8,10 @@ set -o pipefail
 
 # $1: Original input file
 # $2: Lang
+# $3: tmpdir
+
+tmpdir=$3
+inpfilename=$(basename $1)
 
 # Convert English ARPABET to [lang] IPA phonemes
-python3 arpa2ipa.py --lang $2 < $1.arpa > $1.$2.ipa
+python3 arpa2ipa.py --lang $2 < $tmpdir/$inpfilename.arpa > $tmpdir/$inpfilename.$2.ipa
