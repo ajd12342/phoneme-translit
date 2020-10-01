@@ -11,7 +11,7 @@ be `[input-filename]`.
 
 Let the Indian language be `[lang]`. Currently supported: `hin`.
 
-Use `[version]`=v1 if you want to use the rule 'aspirated when word-initial consonant followed by vowel`.
+Use `[version]`=v1 if you want to use the rule 'aspirated when word-initial consonant followed by vowel'.
 Use `[version]`=v2 if you want to use the rule 'unaspirated always'.
 
 Then, run:
