@@ -1,8 +1,33 @@
 # eng2indic
 
+The setup is a one liner:
+
+```bash
+pip install g2p_en
+```
+
+Let the text file path be `[input]` and let its dir be `[input-dir]` and the filename of input
+be `[input-filename]`.
+
+Let the Indian language be `[lang]`. Currently supported: `hin`.
+
+Use `[version]`=v1 if you want to use the rule 'aspirated when word-initial consonant followed by vowel`.
+Use `[version]`=v2 if you want to use the rule 'unaspirated always'.
+
+Then, run:
+
+WD: eng2indic
+
+```bash
+./eng2indic.sh [input] [lang] [version] # Will be output to [input-dir]/.eng2[lang][version]/[input-filename].hin.txt
+```
+
+# eng2indic_old_g2p-seq2seq
+Don't use this one.
+
 ## Create project directory
 
-WD: eng2hin
+WD: eng2indic_old_g2p-seq2seq
 
 ```bash
 mkdir g2p
@@ -13,7 +38,7 @@ cd g2p
 
 This is because CMU Sphinx works on specific older versions of Tensorflow and Tensor2Tensor
 
-WD: eng2hin/g2p
+WD: eng2indic_old_g2p-seq2seq/g2p
 
 ```bash
 python3 -m venv g2p
@@ -27,7 +52,7 @@ pip install tensor2tensor==1.6.6
 
 ## Clone and install g2p-seq2seq and download pretrained model
 
-WD: eng2hin/g2p
+WD: eng2indic_old_g2p-seq2seq/g2p
 
 ```bash
 git clone https://github.com/cmusphinx/g2p-seq2seq.git
@@ -42,21 +67,18 @@ cd ..
 
 ## Run on the text dataset
 
-Let the text file path be `[input-text]` and the model path to the previously downloaded model be
-`[model]`. Let the Indian language be [lang].
+Let the text file path be `[input]` and let its dir be `[input-dir]` and the filename of input
+be `[input-filename]`.
+
+Let model path to the previously downloaded model be `[model]`.
+
+Let the Indian language be [lang].
 Currently supported: `hin`.
+
 Then, run:
 
-WD: eng2hin
+WD: eng2indic_old_g2p-seq2seq
 
 ```bash
-./eng2indic.sh [model] [input-text] [lang] # Will be output to [input-text].hin.txt (change to whatever Shreya needs)
-```
-
-# eng2indic2
-
-The setup is reduced to one line:
-
-```
-pip install g2p_en
+./eng2indic.sh [model] [input] [lang] # Will be output to [input-dir]/.eng2[lang][version]_old/[input-filename].hin.txt
 ```

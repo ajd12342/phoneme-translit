@@ -5,6 +5,7 @@ import importlib
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--lang', required=True, choices=['hin'])
+    parser.add_argument('--version', required=True, choices=['v1','v2'])
     args = parser.parse_args()
 
     module = importlib.import_module(args.lang+'.arpa2ipa')
@@ -13,6 +14,6 @@ if __name__ == "__main__":
     for line in sys.stdin:
         utt_id = line.split()[0]
         line_arpa = line.split()[1:]
-        ipa = module.arpa2ipa(line_arpa)
+        ipa = module.arpa2ipa(line_arpa, args.version)
         outp = utt_id + ' ' + ' '.join(ipa)
         print(outp)

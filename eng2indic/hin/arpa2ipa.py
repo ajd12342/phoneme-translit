@@ -6,7 +6,10 @@ import sys
 # Module that converts ARPA to IPA for Hindi. 
 # May use language-specific rules so it is a per-language module.
 
-def arpa2ipa(tokenized_arpa):
+def arpa2ipa(tokenized_arpa, version):
+    if version not in {'v1','v2'}:
+        raise Exception(f'version must be one of "v1" or "v2", received {version}')
+
     own_file = Path(__file__)
     
     mapping = {}
@@ -39,10 +42,14 @@ def arpa2ipa(tokenized_arpa):
                     # If vowel, random choice
                     ipa.append(random.choice(mapping[arpa]))
                 elif arpa in consonants:
-                    # If consonant, if word-initial, use aspirated at index 1, else use index 0
-                    if i in word_initial_positions and i not in word_final_positions and tokenized_arpa[i+1] in vowels:
-                        ipa.append(mapping[arpa][1])
-                    else:
+                    if version == 'v1':
+                        # If consonant, if word-initial, use aspirated at index 1, else use index 0
+                        if i in word_initial_positions and i not in word_final_positions and tokenized_arpa[i+1] in vowels:
+                            ipa.append(mapping[arpa][1])
+                        else:
+                            ipa.append(mapping[arpa][0])
+                    elif version == 'v2':
+                        # Always use unaspirated
                         ipa.append(mapping[arpa][0])
                 else:
                     ipa.append(arpa)

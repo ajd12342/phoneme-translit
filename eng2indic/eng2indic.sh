@@ -6,19 +6,18 @@ set -e
 set -u
 set -o pipefail
 
-# Argument $1 - [model]
-# Argument $2 - [input]
-# Argument $3 - [lang]
+# Argument $1 - [input]
+# Argument $2 - [lang]
+# Argument $3 - [v1 or v2]
 
-tmpdir="$(dirname "$2")"/.eng2$3
+tmpdir="$(dirname "$1")"/.eng2$2$3
 mkdir -p $tmpdir
 
-./eng2arpa.sh $1 $2 $tmpdir
+./eng2arpa.sh $1 $tmpdir
 echo "Eng to ARPABET done"
-./arpa2ipa.sh $2 $3 $tmpdir
+./arpa2ipa.sh $1 $2 $3 $tmpdir
 echo "ARPABET to IPA done"
-./ipa2indic.sh $2 $3 $tmpdir
-echo "IPA to" $3 "done"
-# Rename to filename desired by Shreya
+./ipa2indic.sh $1 $2 $tmpdir
+echo "IPA to" $2 "done"
 
 echo "Done."
