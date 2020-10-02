@@ -24,8 +24,8 @@ inpfilename=$(basename $1)
 filename="$1"_"$2""$3"
 
 # moving the needed file out of the temp directory
-echo "Moving " $tmpdir/$inpfilename.$2.txt "to" $filename "done"
-mv $tmpdir/$inpfilename.$2.txt $filename
+echo "Copying " $tmpdir/$inpfilename.$2.txt "to" $filename "done"
+cp $tmpdir/$inpfilename.$2.txt $filename
 
 # rm -r $tmpdir
 echo "Done"
