@@ -21,11 +21,11 @@ echo "ARPABET to IPA done"
 echo "IPA to" $2 "done"
 
 inpfilename=$(basename $1)
-filename=$1_$2$3
+filename="$1"_"$2""$3"
 
 # moving the needed file out of the temp directory
-echo "Moving " $tmpdir/$inpfilename.$2.txt "to" $1_$2$3 "done"
-mv $tmpdir/$inpfilename.$2.txt $1_$2$3
+echo "Moving " $tmpdir/$inpfilename.$2.txt "to" $filename "done"
+mv $tmpdir/$inpfilename.$2.txt $filename
 
 # rm -r $tmpdir
 echo "Done"
