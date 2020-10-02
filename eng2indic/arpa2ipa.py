@@ -5,7 +5,7 @@ import importlib
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--lang', required=True, choices=['hin'])
-    parser.add_argument('--version', required=True, choices=['v1','v2'])
+    parser.add_argument('--version', required=True, choices=['v1', 'v1a', 'v2', 'v2a'])
     args = parser.parse_args()
 
     module = importlib.import_module(args.lang+'.arpa2ipa')

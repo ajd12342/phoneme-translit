@@ -8,7 +8,7 @@ set -o pipefail
 
 # Argument $1 - [input]
 # Argument $2 - [lang]
-# Argument $3 - [v1 or v2]
+# Argument $3 - [v1 or v1a or v2 or v2a]
 
 tmpdir="$(dirname "$1")"/.eng2$2$3
 mkdir -p $tmpdir
@@ -17,7 +17,7 @@ mkdir -p $tmpdir
 echo "Eng to ARPABET done"
 ./arpa2ipa.sh $1 $2 $3 $tmpdir
 echo "ARPABET to IPA done"
-./ipa2indic.sh $1 $2 $tmpdir
+./ipa2indic.sh $1 $2 $3 $tmpdir
 echo "IPA to" $2 "done"
 
 echo "Done."

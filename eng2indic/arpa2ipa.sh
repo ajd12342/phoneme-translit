@@ -8,7 +8,7 @@ set -o pipefail
 
 # $1: Original input file
 # $2: Lang
-# $3: Version (v1 or v2)
+# $3: Version (v1 or v1a or v2 or v2a)
 # $3: tmpdir
 
 tmpdir=$4

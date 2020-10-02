@@ -7,7 +7,7 @@ import sys
 # Module that converts IPA to graphemes for Hindi. 
 # May use language-specific rules so it is a per-language module.
 
-def ipa2indic(tokenized_ipa):
+def ipa2indic(tokenized_ipa, version):
     own_file = Path(__file__)
     
     mapping = {}
@@ -22,6 +22,9 @@ def ipa2indic(tokenized_ipa):
 
     with open((own_file.parent)/'ipaconsonants.txt', 'r') as f:
         consonants = set([_.strip() for _ in f])
+
+    with open((own_file.parent)/'graphemenasalconsonants.txt', 'r') as f:
+        graphemenasalconsonants = set([_.strip() for _ in f])
 
     indic = [_ for _ in tokenized_ipa]
     is_consonant = [False for _ in tokenized_ipa]
@@ -51,6 +54,14 @@ def ipa2indic(tokenized_ipa):
             if not i in word_final_positions and is_consonant[i+1]:
                 # Consonant followed by consonant, so halantya
                 indic[i] = symb+'्'
+                # Convert to anuswaar if v1a or v2a
+                if version=='v1a' or version=='v2a':
+                    if symb in graphemenasalconsonants:
+                        indic[i] = 'ं'
+            if i in word_final_positions and indic[i]=='ङ':
+                # Replace it with anuswaar followed by ग if v1a or v2a
+                if version=='v1a' or version=='v2a':
+                    indic[i] = 'ंग'
     
     # Convert vowels
     for i, symb in enumerate(indic):
