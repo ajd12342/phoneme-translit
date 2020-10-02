@@ -3,7 +3,6 @@ from pathlib import Path
 import csv
 import random
 import sys
-
 # Module that converts IPA to graphemes for Hindi. 
 # May use language-specific rules so it is a per-language module.
 
@@ -11,16 +10,16 @@ def ipa2indic(tokenized_ipa, version):
     own_file = Path(__file__)
     
     mapping = {}
-    with open((own_file.parent)/'ipa2indic.csv', 'r', newline='') as csvfile:
+    with open((own_file.parent)/'ipa2indic.csv', 'r', newline='',encoding='utf-8') as csvfile:
         reader =  csv.reader(csvfile)
         for row in reader:
             mapping[row[0]] = row[1].split(',')
         mapping['<space>'] = [' ']
     
-    with open((own_file.parent)/'ipavowels.txt', 'r') as f:
+    with open((own_file.parent)/'ipavowels.txt', 'r',encoding='utf-8') as f:
         vowels = set([_.strip() for _ in f])
 
-    with open((own_file.parent)/'ipaconsonants.txt', 'r') as f:
+    with open((own_file.parent)/'ipaconsonants.txt', 'r',encoding='utf-8') as f:
         consonants = set([_.strip() for _ in f])
 
     with open((own_file.parent)/'graphemenasalconsonants.txt', 'r') as f:

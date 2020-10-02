@@ -20,4 +20,12 @@ echo "ARPABET to IPA done"
 ./ipa2indic.sh $1 $2 $3 $tmpdir
 echo "IPA to" $2 "done"
 
-echo "Done."
+inpfilename=$(basename $1)
+filename="$1"_"$2""$3"
+
+# moving the needed file out of the temp directory
+echo "Moving " $tmpdir/$inpfilename.$2.txt "to" $filename "done"
+mv $tmpdir/$inpfilename.$2.txt $filename
+
+# rm -r $tmpdir
+echo "Done"
