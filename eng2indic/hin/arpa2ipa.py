@@ -13,16 +13,16 @@ def arpa2ipa(tokenized_arpa, version):
     own_file = Path(__file__)
     
     mapping = {}
-    with open((own_file.parent)/'arpa2ipa.csv', 'r', newline='') as csvfile:
+    with open((own_file.parent)/'arpa2ipa.csv', 'r', newline='',encoding='utf-8') as csvfile:
         reader =  csv.reader(csvfile)
         for row in reader:
             mapping[row[0]] = row[1].split(',')
         mapping['<space>'] = ['<space>']
     
-    with open((own_file.parent)/'arpavowels.txt', 'r') as f:
+    with open((own_file.parent)/'arpavowels.txt', 'r',encoding='utf-8') as f:
         vowels = set([_.strip() for _ in f])
 
-    with open((own_file.parent)/'arpaconsonants.txt', 'r') as f:
+    with open((own_file.parent)/'arpaconsonants.txt', 'r',encoding='utf-8') as f:
         consonants = set([_.strip() for _ in f])
 
     missing = set()
