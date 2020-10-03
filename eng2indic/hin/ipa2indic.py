@@ -22,7 +22,7 @@ def ipa2indic(tokenized_ipa, version):
     with open((own_file.parent)/'ipaconsonants.txt', 'r',encoding='utf-8') as f:
         consonants = set([_.strip() for _ in f])
 
-    with open((own_file.parent)/'graphemenasalconsonants.txt', 'r') as f:
+    with open((own_file.parent)/'graphemenasalconsonants.txt', 'r',encoding='utf-8') as f:
         graphemenasalconsonants = set([_.strip() for _ in f])
 
     indic = [_ for _ in tokenized_ipa]
